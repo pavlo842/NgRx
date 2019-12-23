@@ -1,9 +1,10 @@
 <div class="form-group">
     <label for="car-name">Car name</label>
     <input
-        type="email"
+        type="text"
         class="form-control"
         id="car-name"
+        [(ngModel)]="carName"
         placeholder="Car name">
 </div>
 
@@ -13,8 +14,9 @@
         type="email"
         class="form-control"
         id="car-model"
+        [(ngModel)]="carModel"
         placeholder="Car model">
 </div>
 
-<button type="button" class="btn btn-outline-primary">Add car</button>
-<button type="button" class="btn btn-outline-warning">Load cars</button>
+<button type="button" (click)="onAdd()" class="btn btn-outline-primary">Add car</button>
+<button type="button" (click)="onLoad()" class="btn btn-outline-warning">Load cars</button>
