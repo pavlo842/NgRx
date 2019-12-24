@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Car, Cars } from './car.model';
+import { Cars } from './car.model';
 import { Store } from '@ngrx/store';
 import { AppState } from './redux/app.state';
 import { Observable } from 'rxjs';
@@ -12,8 +12,6 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  public cars: Car[] = [];
-
   public carState: Observable<Cars>;
 
   constructor(
@@ -22,10 +20,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.carState = this.store.select('carPage');
-  }
-
-  onDelete(car: Car) {
-    this.cars = this.cars.filter(c => c.id !== car.id);
   }
 
 }
