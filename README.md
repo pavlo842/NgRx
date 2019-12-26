@@ -30,3 +30,8 @@ installs:
 bootstrap 4
 moment
 ngrx - sudo npm i @ngrx/store --save
+
+install json server
+sudo npm i --save-del json-server
+install globall json server
+sudo npm i -g json-server
