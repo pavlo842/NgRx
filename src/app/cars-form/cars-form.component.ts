@@ -14,14 +14,10 @@ import { CarsService } from '../services/cars.service';
 })
 export class CarsFormComponent {
 
-  // tslint:disable-next-line: no-inferrable-types
-  private id: number = 2;
-
   carName: '';
   carModel: '';
 
   constructor(
-    private store: Store<AppState>,
     private service: CarsService,
   ) { }
 
@@ -30,17 +26,10 @@ export class CarsFormComponent {
       return;
     }
 
-    this.id = ++this.id;
+    const date = moment().format('DD.MM.YY');
+    const car = new Car(this.carName, date, this.carModel);
 
-    const car = new Car(
-      this.carName,
-      moment().format('DD.MM.YY'),
-      this.carModel,
-      false,
-      this.id
-    );
-
-    this.store.dispatch(new AddCar(car));
+    this.service.addCar(car);
 
     this.carModel = '';
     this.carName = '';

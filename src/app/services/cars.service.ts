@@ -4,7 +4,7 @@ import { map } from 'rxjs/operators';
 import { AppState } from '../redux/app.state';
 import { Store } from '@ngrx/store';
 import { Car } from '../car.model';
-import { LoadCars } from '../redux/cars.action';
+import { LoadCars, AddCar } from '../redux/cars.action';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +25,16 @@ export class CarsService {
       })
     ).subscribe((cars: Car[]) => {
       this.store.dispatch(new LoadCars(cars));
+    });
+  }
+
+  addCar(car: Car) {
+    return this.http.post(CarsService.BASE_URL + 'cars', car).pipe(
+      map((event) => {return event;
+      })
+    // tslint:disable-next-line: no-shadowed-variable
+    ).subscribe((car: Car) => {
+      this.store.dispatch(new AddCar(car));
     });
   }
 
