@@ -32,6 +32,9 @@ moment
 ngrx - sudo npm i @ngrx/store --save
 
 install json server
-sudo npm i --save-del json-server
+sudo npm i --save-dev json-server
 install globall json server
 sudo npm i -g json-server
+
+install concurrently fo two build run
+sudo npm i --save-dev concurrently
