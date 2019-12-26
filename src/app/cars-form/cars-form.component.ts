@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { Store } from '@ngrx/store';
 import { AppState } from '../redux/app.state';
 import { AddCar } from '../redux/cars.action';
+import { CarsService } from '../services/cars.service';
 
 @Component({
   selector: 'app-cars-form',
@@ -13,13 +14,15 @@ import { AddCar } from '../redux/cars.action';
 })
 export class CarsFormComponent {
 
+  // tslint:disable-next-line: no-inferrable-types
   private id: number = 2;
 
   carName: '';
   carModel: '';
 
   constructor(
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private service: CarsService,
   ) { }
 
   onAdd() {
@@ -45,6 +48,7 @@ export class CarsFormComponent {
   }
 
   onLoad() {
+    this.service.loadCars();
   }
 
 }
