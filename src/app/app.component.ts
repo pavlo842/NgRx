@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 import { Cars } from './car.model';
-import { Store } from '@ngrx/store';
 import { AppState } from './redux/app.state';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',

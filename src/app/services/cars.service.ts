@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { AppState } from '../redux/app.state';
 import { Store } from '@ngrx/store';
+
 import { Car } from '../car.model';
-import { LoadCars, AddCar } from '../redux/cars.action';
+import { AppState } from '../redux/app.state';
+import { LoadCars, AddCar, DeleteCar, UpdateCar } from '../redux/cars.action';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +36,25 @@ export class CarsService {
     // tslint:disable-next-line: no-shadowed-variable
     ).subscribe((car: Car) => {
       this.store.dispatch(new AddCar(car));
+    });
+  }
+
+  deleteCar(car: Car) {
+    return this.http.delete(CarsService.BASE_URL + 'cars/' + car.id).pipe(
+      map((event) => {return event;
+      })
+    ).subscribe(() => {
+      this.store.dispatch(new DeleteCar(car));
+    });
+  }
+
+  updateCar(car: Car) {
+    return this.http.put(CarsService.BASE_URL + 'cars/' + car.id, car).pipe(
+      map((event) => {return event;
+      })
+    // tslint:disable-next-line: no-shadowed-variable
+    ).subscribe((car: Car) => {
+      this.store.dispatch(new UpdateCar(car));
     });
   }
 
