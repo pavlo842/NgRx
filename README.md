@@ -38,3 +38,6 @@ sudo npm i -g json-server
 
 install concurrently fo two build run
 sudo npm i --save-dev concurrently
+
+two dispatch
+sudo npm i --save @ngrx/effects
