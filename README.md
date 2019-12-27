@@ -42,3 +42,9 @@ sudo npm i --save-dev concurrently
 https://ngrx.io/
 two dispatch
 sudo npm i --save @ngrx/effects
+
+install routing
+sudo npm install @ngrx/router-store --save
+
+install store-devtools
+sudo npm install @ngrx/store-devtools --save
