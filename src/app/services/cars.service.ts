@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 
-import { Car } from '../car.model';
+import { Car, Cars } from '../car.model';
 import { AppState } from '../redux/app.state';
 import { LoadCars, AddCar, DeleteCar, UpdateCar } from '../redux/cars.action';
 
@@ -20,11 +21,16 @@ export class CarsService {
     private store: Store<AppState>
   ) { }
 
-  loadCars(): any {
+  preloadCars(): Observable<any> {
     return this.http.get(CarsService.BASE_URL + 'cars').pipe(
       map((event) => { console.log(event); return event;
       })
-    ).subscribe((cars: Car[]) => {
+    );
+  }
+
+  loadCars(): any {
+    this.preloadCars()
+    .subscribe((cars: Car[]) => {
       this.store.dispatch(new LoadCars(cars));
     });
   }
